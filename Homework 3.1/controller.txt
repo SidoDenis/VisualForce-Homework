@@ -1,0 +1,16 @@
+public class NewContact {
+    public Id accountId;
+    public Contact newContact {get; set;}
+
+    public NewContact(ApexPages.StandardController con) {
+        this.accountId = (Id) con.getId();
+        newContact = new Contact();
+    }
+    
+    public Pagereference saveNewContact(){
+        newContact.AccountId = this.accountId;
+        insert newContact;
+        Pagereference pr = New PageReference('/' + newContact.id);
+        return pr;
+    }
+}
